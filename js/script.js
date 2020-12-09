@@ -47,17 +47,26 @@ let quotesArray = [
   },
 ];
 
-/***
- * getRandomQuote function generates a random index and returns quote object at that index in quote array
-***/
+// Generates random background color
+function randomBackground() {
+  let red = Math.floor(Math.random() * 256)
+  let green = Math.floor(Math.random() * 256)
+  let blue = Math.floor(Math.random() * 256)
+  let backgroundColor = `rgb(${red}, ${green}, ${blue})`
+
+  return document.body.style.background = backgroundColor
+}
+
+// getRandomQuote function generates a random index and returns quote object at that index in quote array
+
 function getRandomQuote(array) {
   let randomIndex = Math.floor(Math.random() * Math.floor(array.length))
   return quotesArray[randomIndex]
 }
 
-/***
- * printQuote function uses quote object from getRandomQuote function to display selected quote
-***/
+
+// printQuote function uses quote object from getRandomQuote function to display selected quote
+
 function printQuote() {
   let quoteObj = getRandomQuote(quotesArray)
   let html = `
@@ -90,15 +99,6 @@ function printQuote() {
 // Changes displayed quotes automatically every 15s
 setInterval(printQuote, 10000)
 
-// Generates random background color
-function randomBackground() {
-  let red = Math.floor(Math.random() * 256)
-  let green = Math.floor(Math.random() * 256)
-  let blue = Math.floor(Math.random() * 256)
-  let backgroundColor = `rgb(${red}, ${green}, ${blue})`
-
-  return document.body.style.background = backgroundColor
-}
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
