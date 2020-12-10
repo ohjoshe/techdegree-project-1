@@ -10,7 +10,7 @@ project 1 - A Random Quote Generator
 /*** 
  * Array that stores quote objects
 ***/
-let quotesArray = [
+let quotes = [
   {
     quote: 'I reject your reality and substitute my own.',
     source: 'Adam Savage',
@@ -61,14 +61,14 @@ function randomBackground() {
 
 function getRandomQuote(array) {
   let randomIndex = Math.floor(Math.random() * Math.floor(array.length))
-  return quotesArray[randomIndex]
+  return quotes[randomIndex]
 }
 
 
 // printQuote function uses quote object from getRandomQuote function to display selected quote
 
 function printQuote() {
-  let quoteObj = getRandomQuote(quotesArray)
+  let quoteObj = getRandomQuote(quotes)
   let html = `
     <p class="quote">${quoteObj.quote}</p>
     <p class="source">${quoteObj.source}
