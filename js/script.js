@@ -10,7 +10,7 @@ project 1 - A Random Quote Generator
 /*** 
  * Array that stores quote objects
 ***/
-let quotes = [
+const quotes = [
   {
     quote: 'I reject your reality and substitute my own.',
     source: 'Adam Savage',
@@ -47,6 +47,9 @@ let quotes = [
   },
 ];
 
+// Creates copy of quotes array
+let quotesCopy = Array.from(quotes)
+
 // Generates random background color
 function randomBackground() {
   let red = Math.floor(Math.random() * 256)
@@ -61,14 +64,29 @@ function randomBackground() {
 
 function getRandomQuote(array) {
   let randomIndex = Math.floor(Math.random() * Math.floor(array.length))
-  return quotes[randomIndex]
+
+  // Displays random quote and removes displayed quote from quotesCopy array
+  if (quotesCopy.length > 0) {
+    let randomQuote = quotesCopy[randomIndex]
+    quotesCopy.splice(randomIndex, 1)
+    return randomQuote
+  }
+
+  // Resets quotesCopy array and displays next random quote
+  if (quotesCopy.length === 0) {
+    quotesCopy = Array.from(quotes)
+
+    let randomQuote = quotesCopy[randomIndex]
+    quotesCopy.splice(randomIndex, 1)
+    return randomQuote
+  }
 }
 
 
 // printQuote function uses quote object from getRandomQuote function to display selected quote
 
 function printQuote() {
-  let quoteObj = getRandomQuote(quotes)
+  let quoteObj = getRandomQuote(quotesCopy)
   let html = `
     <p class="quote">${quoteObj.quote}</p>
     <p class="source">${quoteObj.source}
@@ -97,7 +115,7 @@ function printQuote() {
 }
 
 // Changes displayed quotes automatically every 15s
-setInterval(printQuote, 10000)
+setInterval(printQuote, 5000)
 
 /***
  * click event listener for the print quote button
